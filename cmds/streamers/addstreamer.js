@@ -28,6 +28,10 @@ module.exports.run = async (bot, message, args) => {
         if(error) return message.channel.send("slight error, whoops")
 
         let json = JSON.parse(body);
+
+        if(json.error === "Not Found") {
+            return embedMaker.message("I couldn't find a streamer with that name")
+        }
         let object = {}
         object.data = json
         qstreamers(object)
