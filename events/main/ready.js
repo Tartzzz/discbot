@@ -8,7 +8,6 @@ module.exports = async (bot) => {
           console.log("done")
         });
     }
-    crt()
     crt2()
     let SchannelIDS = {}
     let DchannelIDS = {}
