@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 const config = require("../data/config.json")
-const bot = require("../bot.js")
+const bot = require("../bot")
 module.exports = {
     message: (message, text, options, callback) => {
         options = options || {}

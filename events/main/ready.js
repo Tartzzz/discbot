@@ -3,7 +3,7 @@ const mixer = require("../../mixer.js")
 module.exports = async (bot) => {
     console.log("Bot ready")
     bot.user.setActivity("%help")
-    
+
     let SchannelIDS = {}
     let DchannelIDS = {}
     bot.guilds.forEach(guild => {
@@ -25,6 +25,7 @@ module.exports = async (bot) => {
     
                     for(i = 0; i < channelID.length; i++) {
                         let config = {channelID : channelID[i], discordChannelID, guildID, bot}
+                        console.log(config.channelID, config.discordChannelID)
                         const mixerBot = new mixer(config)
                         mixerBot.start()
                         mixerBot.ready(() => {
