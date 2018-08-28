@@ -22,9 +22,9 @@ module.exports.run = async (bot, message, args) => {
                 json.online === true ? extension = `:red_circle: - ${res.viewersCurrent} viewers` : extension = ":black_circle: "
                 txt.push(`\`#${num + 1}\` **${res.streamerName}** ${extension}`)
             })
-            let text = txt.join("\n")
-            msg(text)
         }
+        let text = txt.join("\n")
+        msg(text)
     })
 
     function msg(text) {
