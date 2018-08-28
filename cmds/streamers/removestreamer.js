@@ -18,10 +18,10 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-    name: "addstreamer",
-    description: "Add a streamer to the announcement list",
-    usage: `${prefix}addstreamer [channel]`,
-    examples: [`${prefix}addstreamer tartzzz`]
+    name: "removestreamer",
+    description: "Remove a streamer from the announcement list",
+    usage: `${prefix}removestreamer [channel]`,
+    examples: [`${prefix}removestreamer tartzzz`]
 }
 
 module.exports.conf = {

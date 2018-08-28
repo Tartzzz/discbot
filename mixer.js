@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 const Carina = require('carina').Carina
 const ws = require('ws');
 const query = require("./modules/query.js")
+const Discord = require("discord.js")
 Carina.WebSocket = ws;
 
 const messageStart = (channelInfo) => {
@@ -59,6 +60,7 @@ class MixerDiscordBot{
                 }else if(data.online === false) {
                     this.isLive = false
                 }
+                this.postToDiscord()
             })
         });
     }
@@ -80,7 +82,9 @@ class MixerDiscordBot{
         let config = this.config
         let guild = bot.guilds.get(config.guildID)
         let channel = guild.channels.get(config.discordChannelID)
-        channel.send(message)
+
+        let info = this.loadInfo()
+        console.log(info)
     }
 }
 module.exports = MixerDiscordBot;

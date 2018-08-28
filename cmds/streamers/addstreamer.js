@@ -17,6 +17,18 @@ module.exports.run = async (bot, message, args) => {
         query.select("streamers", {guildID: message.guild.id, streamerID: dataJ.id}, result => {
             if(!result) {
                 query.insert("streamers", {guildID: message.guild.id, streamerName: streamer, streamerID: dataJ.id})
+                query.select("guilds", {guildID: message.guild.id}, guild => {
+                    var channelID = dataJ.id
+                    var discordChannelID = guild.AChannel
+                    var guildID = message.guild.id
+                    let config = {channelID, discordChannelID, guildID, bot}
+                    const mixerBot = new mixer(config)
+                    mixerBot.start()
+                    mixerBot.ready(() => {
+                        console.log(`ready - ${channelID}`)
+                    })
+                })
+
                 return embedMaker.message(message, `Added ${streamer} to the announcement list.`, {footer: `channelID: ${dataJ.id}`})
             }
             return embedMaker.message(message, "That streamer is already on the list.")
