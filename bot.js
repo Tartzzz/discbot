@@ -1,5 +1,6 @@
 const Discord = require("discord.js")
 const bot = new Discord.Client({disableEveryone: true})
+module.exports = bot
 const mixer = require("./mixer.js")
 const dbConnect = require("./modules/connect.js")
 const fs = require("fs")
@@ -54,5 +55,3 @@ fs.readdir('./events/', (err, files) => {
 });
 
 bot.login(process.env.BOT_TOKEN)
-
-module.exports = {bot}
