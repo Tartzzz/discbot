@@ -21,13 +21,13 @@ module.exports.run = async (bot, message, args) => {
         let Title = ">Commands"
         let Description = `A list of available commands.\nFor additional info on a command, type \`${prefix}help <command>\``
         let Cat1 = `>Stream Announcements`
-        let Cat1Txt = "`announcementchannel`, `addstreamer`\n`removestreamer`, `streamerlist`"
+        let Cat1Txt = "**`announcementchannel`**, **`addstreamer`**\n**`removestreamer`**, **`streamerlist`**"
         let Cat2 = `>Utility`
         let Cat2Txt = "`help`"
 
         let embed = new Discord.RichEmbed()
             .setTitle(Title)
-            .setDescription(Description)
+            .setDescription(`${Description}\n**${Cat1}**\n${Cat1Txt}\n**${Cat2}**${Cat2Txt}`)
             .addField(Cat1, Cat1Txt)
             .addField(Cat2, Cat2Txt)
             .setColor(bot.config.embed.embedColor)
