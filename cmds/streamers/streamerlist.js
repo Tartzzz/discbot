@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
         }
         let txt = []
         for(i = 0; i < result.length; i++) {
-            txt.push(`\`#${num + 1}\` **${res.streamerName}** ${extension}`)
+            txt.push(`\`#${i + 1}\` **${result[i].streamerName}**`)
             let text = txt.join("\n")
             msg(text)
         }
