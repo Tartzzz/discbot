@@ -11,17 +11,9 @@ module.exports.run = async (bot, message, args) => {
         }
         let txt = []
         for(i = 0; i < result.length; i++) {
-            var infourl = `https://mixer.com/api/v1/channels/${result[i].streamerName}`
             var res = result[i]
             let num = i
-            request(infourl, (error, response, body) => {
-                if(error) return message.channel.send("slight error, whoops")
-        
-                let json = JSON.parse(body);
-                
-                json.online === true ? extension = `:red_circle: - ${res.viewersCurrent} viewers` : extension = ":black_circle: "
-                txt.push(`\`#${num + 1}\` **${res.streamerName}** ${extension}`)
-            })
+            txt.push(`\`#${num + 1}\` **${res.streamerName}**`)
         }
         let text = txt.join("\n")
         msg(text)
