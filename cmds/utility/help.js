@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
             .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL)
             .setTitle(`Command: ${config.prefix}${name}`)
             .setDescription(`**Description:** ${description}\n**Usage:** ${usage}\n**${exampleText}:**\n    ${examples}`)
-        message.channel.send(embed)
+        return message.channel.send(embed)
     }
     function help() {
         let Title = ">Commands"
@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
 
         message.channel.send(embed)
     }
-
+    help() 
 }
 
 module.exports.help = {
