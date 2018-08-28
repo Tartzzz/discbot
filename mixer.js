@@ -3,10 +3,28 @@ const Carina = require('carina').Carina
 const ws = require('ws');
 const query = require("./modules/query.js")
 const Discord = require("discord.js")
+const config = require("./data/config.json")
 Carina.WebSocket = ws;
 
 const messageStart = (channelInfo) => {
-    return `We're live playing ${channelInfo.type.game} on Mixer! Join the fun at <https://mixer.com/${channelInfo.token}>!`
+    channelInfo.token.toLowerCase().endsWith("'s") ? Sname = channelInfo.token : Sname = channelInfo.token + (channelInfo.token.toLowerCase().endsWith("s") ? "'" : "'s")
+
+    let embed = new Discord.RichEmbed()
+        .setURL(`https://mixer.com/${channelInfo.token}`)
+        .setTitle(`"${channelInfo.name}"`)
+        .setAuthor(`${channelInfo.token} Is Live!`)
+        .setDescription(channelInfo.user.bio)
+        .addField("Streaming", channelInfo.type.name)
+        .addField("Audience", channelInfo.audience, true)
+        .addField("Mixer Level", channelInfo.user.level, true)
+        .addField("Followers", channelInfo.numFollowers, true)
+        .addField("Total Views", channelInfo.viewersTotal, true)
+        .setFooter(`They seem cool`)
+        .setColor(config.embed.embedColor)
+        .setImage(channelInfo.type.backgroundUrl)
+        .setThumbnail(channelInfo.user.avatarUrl)
+        .setTimestamp()
+    return embed
 };
 
 const messageEnd = (channelInfo) => {
@@ -17,7 +35,7 @@ const messageEnd = (channelInfo) => {
 const defaultOptions = {
     notifyOnStart: true,
     messageStart: messageStart,
-    notifyOnEnd: true,
+    notifyOnEnd: false,
     messageEnd: messageEnd
 };
 
@@ -52,7 +70,6 @@ class MixerDiscordBot{
                 if(!result) {
                     return this.ca.unsubscribe(`channel:${this.config.channelID}:update`)
                 }
-                
                 if(data.online){
                     if(this.isLive) return
                     this.isLive = true
@@ -60,7 +77,6 @@ class MixerDiscordBot{
                 }else if(data.online === false) {
                     this.isLive = false
                 }
-                this.postToDiscord()
             })
         });
     }
@@ -81,10 +97,10 @@ class MixerDiscordBot{
         let bot = this.config.bot
         let config = this.config
         let guild = bot.guilds.get(config.guildID)
+        console.log(config.discordChannelID)
         let channel = guild.channels.get(config.discordChannelID)
 
-        let info = this.loadInfo()
-        console.log(info)
+        channel.send(message)
     }
 }
 module.exports = MixerDiscordBot;

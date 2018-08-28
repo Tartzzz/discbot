@@ -46,7 +46,6 @@ fs.readdir('./events/', (err, files) => {
                 let eventName = f.split(".")[0];
                 
                 let event = require(`./events/${folder}/${f}`);
-                console.log(event)
                 bot.on(eventName, event.bind(null, bot));
                 delete require.cache[require.resolve(`./events/${folder}/${f}`)];
               });
@@ -55,3 +54,5 @@ fs.readdir('./events/', (err, files) => {
 });
 
 bot.login(process.env.BOT_TOKEN)
+
+module.exports = {bot}

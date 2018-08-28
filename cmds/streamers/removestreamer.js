@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
         if(!result) {
             return embedMaker.message(message, `${streamer} isn't on the list`)
         }
-        query.delete("streamers", {guildID: messasge.guild.id, streamerName: streamer})
+        query.delete("streamers", {guildID: message.guild.id, streamerName: streamer})
         return embedMaker.message(message, `Removed ${streamer} from the list`)
     })
 }

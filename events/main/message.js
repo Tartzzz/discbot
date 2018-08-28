@@ -12,7 +12,7 @@ module.exports = async (bot, message) => {
     if(cmd) {
         if(message.content.startsWith(bot.config.prefix)) {
             if(cmd.conf.cat === "dev") {
-                if(message.author.id !== process.env.DEV_ID) return
+                if(message.author.id !== "436228721033216009") return
             }
             if(cmd.conf.enabled) return cmd.run(bot, message, args)
         }
