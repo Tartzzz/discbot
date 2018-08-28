@@ -27,16 +27,9 @@ const messageStart = (channelInfo) => {
     return embed
 };
 
-const messageEnd = (channelInfo) => {
-    return `Stream is over. <https://mixer.com/${channelInfo.token}>`
-};
-
-
 const defaultOptions = {
     notifyOnStart: true,
     messageStart: messageStart,
-    notifyOnEnd: false,
-    messageEnd: messageEnd
 };
 
 class MixerDiscordBot{
@@ -87,17 +80,10 @@ class MixerDiscordBot{
             this.postToDiscord(message);
         }
     }
-    notifyOnEnd(){
-        if(this.options.notifyOnEnd){
-            const message = this.options.messageEnd(this.channelInfo);
-            this.postToDiscord(message);
-        }
-    }
     postToDiscord(message){
         let bot = this.config.bot
         let config = this.config
         let guild = bot.guilds.get(config.guildID)
-        console.log(config.discordChannelID)
         let channel = guild.channels.get(config.discordChannelID)
 
         channel.send(message)

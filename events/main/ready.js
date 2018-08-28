@@ -2,7 +2,8 @@ const query = require("../../modules/query.js")
 const mixer = require("../../mixer.js")
 module.exports = async (bot) => {
     console.log("Bot ready")
-
+    bot.user.setActivity("%help")
+    
     let SchannelIDS = {}
     let DchannelIDS = {}
     bot.guilds.forEach(guild => {
