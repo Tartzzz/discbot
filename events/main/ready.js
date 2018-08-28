@@ -1,14 +1,7 @@
 const query = require("../../modules/query.js")
 module.exports = async (bot) => {
     console.log("Bot ready")
-    function crt2() {
-        let sql2 = "CREATE TABLE streamers (guildID VARCHAR(255), streamerName VARCHAR(255), streamerID VARCHAR(255))"
-        bot.con.query(sql2, function (err, result) {
-          if (err) throw err;
-          console.log("done")
-        });
-    }
-    crt2()
+    
     let SchannelIDS = {}
     let DchannelIDS = {}
     bot.guilds.forEach(guild => {
