@@ -1,5 +1,6 @@
 {
-	"channelIDS": [],
-	"discordChannelID": "",
-	"guildID": ""
+	"prefix": "%",
+	"embed": {
+		"embedColor": "#ff69b4"
+	}
 }

@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
         let embed = new Discord.RichEmbed()
             .setAuthor(`${name} Mixer Streamers`, bot.icons[message.guild.id])
             .setDescription(text)
-            .setColor(bot.config.color)
+            .setColor(bot.config.embed.embedColor)
             .setTimestamp()
         message.channel.send(embed)
     }

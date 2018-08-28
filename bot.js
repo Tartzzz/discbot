@@ -3,7 +3,9 @@ const bot = new Discord.Client({disableEveryone: true})
 const mixer = require("./mixer.js")
 const dbConnect = require("./modules/connect.js")
 const fs = require("fs")
+const config = require("./data/config.json")
 
+bot.config = config
 bot.commands = new Discord.Collection()
 bot.aliases = new Discord.Collection()
 bot.con = dbConnect
