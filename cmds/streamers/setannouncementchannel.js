@@ -3,6 +3,7 @@ const prefix = require("../../data/config.json").prefix
 const embedMaker = require("../../modules/embed")
 const query = require("../../modules/query")
 module.exports.run = async (bot, message, args) => {
+    if(!message.member.hasPermission("BAN_MEMBERS")) return
     if(!args[0]) return embedMaker.command(message)
 
     let channel = message.mentions.channels.first() || message.guild.channels.get(args[0])

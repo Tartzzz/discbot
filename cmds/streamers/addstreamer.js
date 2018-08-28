@@ -6,7 +6,7 @@ const fetch = require('node-fetch');
 const request = require("request")
 const mixer = require("../../mixer.js")
 module.exports.run = async (bot, message, args) => {
-    console.log("t")
+    if(!message.member.hasPermission("BAN_MEMBERS")) return
     if(!args[0]) return embedMaker.command(message)
 
     let streamer = args[0]
