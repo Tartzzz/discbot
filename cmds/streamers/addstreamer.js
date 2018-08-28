@@ -47,6 +47,11 @@ module.exports.run = async (bot, message, args) => {
     function qguilds(object) {
         let dataJ = object.data
         query.select("guilds", {guildID: message.guild.id}, guild => {
+            if(!guild) {
+                return query.insert("guilds", {guildID: message.guild.id, AChannel: "undefined"}).then(() =>{
+                    return embedMaker.message(message, "You need to set announcement channel before you can add streamers")
+                })
+            }
             var channelID = dataJ.id
             var discordChannelID = guild.AChannel
             var guildID = message.guild.id
