@@ -19,9 +19,9 @@ module.exports.run = async (bot, message, args) => {
     }
     function help() {
         let Title = ">Commands"
-        let Description = `A list of available commands. For additional info on a command, type ${prefix}help <command>`
+        let Description = `A list of available commands.\nFor additional info on a command, type \`${prefix}help <command>\``
         let Cat1 = `>Stream Announcements`
-        let Cat1Txt = "`announcementchannel`, `addstreamer`, `removestreamer`, `streamerlist`"
+        let Cat1Txt = "`announcementchannel`, `addstreamer`\n`removestreamer`, `streamerlist`"
         let Cat2 = `>Utility`
         let Cat2Txt = "`help`"
 
