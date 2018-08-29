@@ -7,24 +7,35 @@ const config = require("./data/config.json")
 Carina.WebSocket = ws;
 
 const messageStart = (channelInfo) => {
-    channelInfo.token.toLowerCase().endsWith("'s") ? Sname = channelInfo.token : Sname = channelInfo.token + (channelInfo.token.toLowerCase().endsWith("s") ? "'" : "'s")
+    let infourl = `https://mixer.com/api/v1/channels/${channelInfo.id}`;
+    request(infourl, (error, response, body) => {
+        if(error) return 
 
-    let embed = new Discord.RichEmbed()
-        .setURL(`https://mixer.com/${channelInfo.token}`)
-        .setTitle(`"${channelInfo.name}"`)
-        .setAuthor(`${channelInfo.token} Is Live!`)
-        .setDescription(channelInfo.user.bio)
-        .addField("Streaming", channelInfo.type.name)
-        .addField("Audience", channelInfo.audience, true)
-        .addField("Mixer Level", channelInfo.user.level, true)
-        .addField("Followers", channelInfo.numFollowers, true)
-        .addField("Total Views", channelInfo.viewersTotal, true)
-        .setFooter(`They seem cool`)
-        .setColor(config.embed.embedColor)
-        .setImage(channelInfo.type.backgroundUrl)
-        .setThumbnail(channelInfo.user.avatarUrl)
-        .setTimestamp()
-    return embed
+        let json = JSON.parse(body);
+
+        if(json.error === "Not Found") return
+        
+        let dataJJ = json
+        dataJJ.token.toLowerCase().endsWith("'s") ? Sname = dataJJ.token : Sname = dataJJ.token + (dataJJ.token.toLowerCase().endsWith("s") ? "'" : "'s")
+
+        let embed = new Discord.RichEmbed()
+            .setURL(`https://mixer.com/${dataJJ.token}`)
+            .setTitle(`"${dataJJ.name}"`)
+            .setAuthor(`${dataJJ.token} Is Live!`)
+            .setDescription(dataJJ.user.bio)
+            .addField("Streaming", dataJJ.type.name)
+            .addField("Audience", dataJJ.audience, true)
+            .addField("Mixer Level", dataJJ.user.level, true)
+            .addField("Followers", dataJJ.numFollowers, true)
+            .addField("Total Views", dataJJ.viewersTotal, true)
+            .setFooter(`They seem cool`)
+            .setColor(config.embed.embedColor)
+            .setImage(dataJJ.type.backgroundUrl)
+            .setThumbnail(dataJJ.user.avatarUrl)
+            .setTimestamp()
+        return embed
+    })
+
 };
 
 const defaultOptions = {
