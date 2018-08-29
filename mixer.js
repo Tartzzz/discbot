@@ -4,6 +4,7 @@ const ws = require('ws');
 const query = require("./modules/query.js")
 const Discord = require("discord.js")
 const config = require("./data/config.json")
+const request = require("request")
 Carina.WebSocket = ws;
 
 const messageStart = async (channelInfo, callback) => {
