@@ -70,6 +70,7 @@ class MixerDiscordBot{
     }
     subscribe() {
         this.ca.subscribe(`channel:${this.config.channelID}:update`, data => {
+            console.log(data)
             query.select("streamers", {guildID: this.config.guildID, streamerID: this.config.channelID}, result => {
                 if(!result) {
                     return this.ca.unsubscribe(`channel:${this.config.channelID}:update`)
