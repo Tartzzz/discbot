@@ -6,7 +6,7 @@ const Discord = require("discord.js")
 const config = require("./data/config.json")
 Carina.WebSocket = ws;
 
-const messageStart = (channelInfo) => {
+const messageStart = async (channelInfo) => {
     let infourl = `https://mixer.com/api/v1/channels/${channelInfo.id}`;
     request(infourl, (error, response, body) => {
         if(error) return 
@@ -87,8 +87,9 @@ class MixerDiscordBot{
 
     notifyOnStart(){
         if(this.options.notifyOnStart){
-            const message = this.options.messageStart(this.channelInfo);
-            this.postToDiscord(message);
+            const message = this.options.messageStart(this.channelInfo).then(() => {
+                this.postToDiscord(message);
+            })
         }
     }
     postToDiscord(message){
