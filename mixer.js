@@ -83,7 +83,6 @@ class MixerDiscordBot{
                 }else if(data.online === false) {
                     this.isLive = false
                 }
-                this.notifyOnStart()
             })
         });
     }
