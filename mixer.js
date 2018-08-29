@@ -6,7 +6,7 @@ const Discord = require("discord.js")
 const config = require("./data/config.json")
 Carina.WebSocket = ws;
 
-const messageStart = async (channelInfo) => {
+const messageStart = async (channelInfo, callback) => {
     let infourl = `https://mixer.com/api/v1/channels/${channelInfo.id}`;
     request(infourl, (error, response, body) => {
         if(error) return 
@@ -33,7 +33,7 @@ const messageStart = async (channelInfo) => {
             .setImage(dataJJ.type.backgroundUrl)
             .setThumbnail(dataJJ.user.avatarUrl)
             .setTimestamp()
-        return embed
+        callback(embed)
     })
 
 };
@@ -81,13 +81,14 @@ class MixerDiscordBot{
                 }else if(data.online === false) {
                     this.isLive = false
                 }
+                this.notifyOnStart
             })
         });
     }
 
     notifyOnStart(){
         if(this.options.notifyOnStart){
-            const message = this.options.messageStart(this.channelInfo).then(() => {
+            this.options.messageStart(this.channelInfo, message => {
                 this.postToDiscord(message);
             })
         }
