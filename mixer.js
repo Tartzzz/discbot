@@ -18,12 +18,13 @@ const messageStart = async (channelInfo, callback) => {
         
         let dataJJ = json
         dataJJ.token.toLowerCase().endsWith("'s") ? Sname = dataJJ.token : Sname = dataJJ.token + (dataJJ.token.toLowerCase().endsWith("s") ? "'" : "'s")
-
+        let bio = dataJJ.user.bio
+        if(!bio) let bio = `Click above to watch!`
         let embed = new Discord.RichEmbed()
             .setURL(`https://mixer.com/${dataJJ.token}`)
             .setTitle(`"${dataJJ.name}"`)
             .setAuthor(`${dataJJ.token} Is Live!`)
-            .setDescription(dataJJ.user.bio)
+            .setDescription(bio)
             .addField("Streaming", dataJJ.type.name)
             .addField("Audience", dataJJ.audience, true)
             .addField("Mixer Level", dataJJ.user.level, true)
