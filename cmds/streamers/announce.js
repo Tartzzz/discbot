@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
         
         let dataJJ = json
 
-        if(!dataJJ.online === false) return embedMaker.message(message, "They are offline")
+        if(!dataJJ.online) return embedMaker.message(message, "They are offline")
         dataJJ.token.toLowerCase().endsWith("'s") ? Sname = dataJJ.token : Sname = dataJJ.token + (dataJJ.token.toLowerCase().endsWith("s") ? "'" : "'s")
     
         let embed = new Discord.RichEmbed()
