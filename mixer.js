@@ -19,7 +19,7 @@ const messageStart = async (channelInfo, callback) => {
         let dataJJ = json
         dataJJ.token.toLowerCase().endsWith("'s") ? Sname = dataJJ.token : Sname = dataJJ.token + (dataJJ.token.toLowerCase().endsWith("s") ? "'" : "'s")
         let bio = dataJJ.user.bio
-        if(!bio) let bio = `Click above to watch!`
+        if(!bio) bio = `Click above to watch!`
         let embed = new Discord.RichEmbed()
             .setURL(`https://mixer.com/${dataJJ.token}`)
             .setTitle(`"${dataJJ.name}"`)
