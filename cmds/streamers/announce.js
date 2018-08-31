@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
             .addField("Followers", dataJJ.numFollowers, true)
             .addField("Total Views", dataJJ.viewersTotal, true)
             .setFooter(`This is a manual announcement`)
-            .setColor(config.embed.embedColor)
+            .setColor(bot.config.embed.embedColor)
             .setImage(dataJJ.type.backgroundUrl)
             .setThumbnail(dataJJ.user.avatarUrl)
             .setTimestamp()
