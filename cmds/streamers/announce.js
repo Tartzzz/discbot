@@ -3,6 +3,7 @@ const prefix = require("../../data/config.json").prefix
 const embedMaker = require("../../modules/embed")
 const query = require("../../modules/query")
 const fetch = require('node-fetch');
+const request = require("request")
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("BAN_MEMBERS")) {
         if(message.author.id === process.env.DEV_ID) {
