@@ -19,9 +19,11 @@ module.exports.run = async (bot, message, args) => {
     
         let json = JSON.parse(body);
     
-        if(json.error === "Not Found") return embedMaker.message("Couldn't find that streamer")
+        if(json.error === "Not Found") return embedMaker.message(message, "Couldn't find that streamer")
         
         let dataJJ = json
+
+        if(!dataJJ.online === false) return embedMaker.message(message, "They are offline")
         dataJJ.token.toLowerCase().endsWith("'s") ? Sname = dataJJ.token : Sname = dataJJ.token + (dataJJ.token.toLowerCase().endsWith("s") ? "'" : "'s")
     
         let embed = new Discord.RichEmbed()
