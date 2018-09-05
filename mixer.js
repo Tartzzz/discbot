@@ -82,7 +82,10 @@ class MixerDiscordBot{
                     this.isLive = true
                     this.notifyOnStart();
                 }else if(data.online === false) {
-                    this.isLive = false
+                    setTimeout(() => {
+                        this.isLive = false
+                    }, 1200000)
+
                 }
             })
         });
