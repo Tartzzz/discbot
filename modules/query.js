@@ -9,7 +9,7 @@ module.exports = {
             if(keys[i] === "all") continue
             if(keys[i] === "orderBy") continue
             if(!where) {
-                sql += "WHERE"
+                sql += " WHERE"
                 where = true
             }
             sql += ` ${keys[i]} = '${values[i]}'`
