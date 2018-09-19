@@ -21,7 +21,7 @@ module.exports = async (bot) => {
                 
                 console.log(SchannelIDS)
                 for(i = 0; i < result.length; i++) {
-                    SchannelIDS[guildID].push(Math.floor(result[i].streamerID))
+                    SchannelIDS[result[i].guildID].push(Math.floor(result[i].streamerID))
                 }
 
                 let guildIDS = Object.keys(SchannelIDS)
