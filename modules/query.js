@@ -1,12 +1,17 @@
 const con = require("./connect.js")
 module.exports = {
     select: async (table, options, callback) => {
-        sql = `SELECT * FROM ${table} WHERE`
+        sql = `SELECT * FROM ${table}`
         let keys = Object.keys(options)
         let values = Object.values(options)
+        let where = false
         for(i = 0; i < keys.length; i++) {
             if(keys[i] === "all") continue
             if(keys[i] === "orderBy") continue
+            if(!where) {
+                sql += "WHERE"
+                where = true
+            }
             sql += ` ${keys[i]} = '${values[i]}'`
             if(keys[i + 1]) sql += ` AND`
         }
