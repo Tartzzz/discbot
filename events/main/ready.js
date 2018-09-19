@@ -15,7 +15,7 @@ module.exports = async (bot) => {
             SchannelIDS[guildID] = []
             DchannelIDS[guildID] = {}
             DchannelIDS[guildID].aChannel = AChannel
-            query.select("streamers", {all: true, guildID}, result => {
+            query.select("streamers", {all: true, guildID: guildID}, result => {
                 if(!result) return
 
                 for(i = 0; i < result.length; i++) {
