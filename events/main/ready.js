@@ -6,7 +6,7 @@ module.exports = async (bot) => {
 
     let SchannelIDS = {}
     let DchannelIDS = {}
-    query.select("guilds", {all: true}, resultG => {
+    query.select("guilds", {"all": true}, resultG => {
         if(!resultG) return
         
         for(i = 0; i < resultG.length; i++) {
@@ -15,7 +15,7 @@ module.exports = async (bot) => {
             SchannelIDS[guildID] = []
             DchannelIDS[guildID] = {}
             DchannelIDS[guildID].aChannel = AChannel
-            query.select("streamers", {all: true, guildID: guildID}, result => {
+            query.select("streamers", {"all": true, guildID: guildID}, result => {
                 if(!result) return
 
                 for(i = 0; i < result.length; i++) {
@@ -42,4 +42,3 @@ module.exports = async (bot) => {
         }
     })
 }
-//
