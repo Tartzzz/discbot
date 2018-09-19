@@ -27,6 +27,7 @@ module.exports = async (bot) => {
                         let config = {channelID : channelID[i], discordChannelID, guildID, bot}
                         console.log(config.channelID, config.discordChannelID)
                         const mixerBot = new mixer(config)
+                        mixerBot.start()
                         mixerBot.ready(() => {
                             console.log(`ready`)
                         })
