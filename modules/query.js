@@ -14,6 +14,7 @@ module.exports = {
         if(options.orderBy) {
             sql += ` ORDER BY CONVERT(${options.orderBy}, SIGNED INTEGER) DESC`
         }
+        console.log(sql)
         return con.query(sql, (err, rows, fields) => {
             if(err) throw err
             if(!rows[0]) return callback(undefined)
