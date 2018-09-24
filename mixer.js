@@ -19,11 +19,13 @@ const messageStart = async (channelInfo, callback) => {
         let dataJJ = json
         dataJJ.token.toLowerCase().endsWith("'s") ? Sname = dataJJ.token : Sname = dataJJ.token + (dataJJ.token.toLowerCase().endsWith("s") ? "'" : "'s")
         let bio = dataJJ.user.bio
-        if(dataJJ.type === null) {
-            let game = "No Game Selected"
+        let game
+        if(!dataJJ.type) {
+            game = "No Game Selected",
+            gameImage = `https://www.publicdomainpictures.net/pictures/190000/velka/black-background-1468370534d5s.jpg`
         }else {
-            let game = dataJJ.type.name 
-            if(game === ("" || null)) game = "No Game Selected"
+            game = dataJJ.type.name
+            gameImage = dataJJ.type.backgroundUrl
         }
         if(bio === ("" || null)) bio = `Click above to watch!`
         let embed = new Discord.RichEmbed()
@@ -38,7 +40,7 @@ const messageStart = async (channelInfo, callback) => {
             .addField("Total Views", dataJJ.viewersTotal, true)
             .setFooter(`They seem cool`)
             .setColor(config.embed.embedColor)
-            .setImage(dataJJ.type.backgroundUrl)
+            .setImage(gameImage)
             .setThumbnail(dataJJ.user.avatarUrl)
             .setTimestamp()
         callback(embed)
@@ -84,12 +86,9 @@ class MixerDiscordBot{
                     return this.ca.unsubscribe(`channel:${this.config.channelID}:update`)
                 }
                 if(data.online){
-                
-
+                    if(Object.keys(data).length > 1) return
                     this.notifyOnStart();
                 }
-
-
             })
         });
     }
