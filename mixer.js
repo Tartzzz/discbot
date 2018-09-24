@@ -78,15 +78,12 @@ class MixerDiscordBot{
                     return this.ca.unsubscribe(`channel:${this.config.channelID}:update`)
                 }
                 if(data.online){
-                    if(this.isLive) return
-                    this.isLive = true
-                    this.notifyOnStart();
-                }else if(data.online === false) {
-                    setTimeout(() => {
-                        this.isLive = false
-                    }, 1200000)
+                
 
+                    this.notifyOnStart();
                 }
+
+
             })
         });
     }
