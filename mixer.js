@@ -85,9 +85,8 @@ class MixerDiscordBot{
                 if(!result) {
                     return this.ca.unsubscribe(`channel:${this.config.channelID}:update`)
                 }
-                if(data.online){
-                    if(Object.keys(data).length > 1) return
-                    if(this.isLive) return
+                if(data.online && Object.keys(data).length === 1){
+                    if(this.isLive === true) return
                     this.isLive = true
                     this.notifyOnStart();
                 }
@@ -110,7 +109,6 @@ class MixerDiscordBot{
         let config = this.config
         let guild = bot.guilds.get(config.guildID)
         let channel = guild.channels.get(config.discordChannelID)
-
         channel.send(message)
     }
 }
