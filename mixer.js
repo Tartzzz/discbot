@@ -25,7 +25,7 @@ const messageStart = async (channelInfo, callback) => {
             .setTitle(`"${dataJJ.name}"`)
             .setAuthor(`${dataJJ.token} Is Live!`)
             .setDescription(bio)
-            .addField("Streaming", dataJJ.type.name)
+            .addField("Streaming", dataJJ.type.name || "No Game Selected")
             .addField("Audience", dataJJ.audience, true)
             .addField("Mixer Level", dataJJ.user.level, true)
             .addField("Followers", dataJJ.numFollowers, true)
