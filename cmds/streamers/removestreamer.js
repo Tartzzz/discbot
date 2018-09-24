@@ -5,7 +5,10 @@ const query = require("../../modules/query")
 const fetch = require('node-fetch');
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("BAN_MEMBERS")) {
-        message.author.id != "436228721033216009" ? return : {}
+        if(message.author.id != "436228721033216009") {
+            return
+        }else{
+        }
     }
     if(!args[0]) return embedMaker.command(message)
 
