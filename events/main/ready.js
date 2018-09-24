@@ -43,7 +43,7 @@ module.exports = async (bot) => {
     // })
     function getAnnouncementChannel(guildID, callback) {
         query.select("guilds", {"all": true, guildID: guildID}, resultG => {
-            callback(resultG.AChannel)
+            callback(resultG[0].AChannel)
         })
     }
     function getGuildIDs(callback) {
