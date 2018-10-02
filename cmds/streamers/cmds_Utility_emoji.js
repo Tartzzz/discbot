@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-
+const config = require("../../data/config.json)
 const embedMaker = require("../../modules/embed.js")
 const request = require('request')
 module.exports.run = async (bot, message, args) => {
@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
         request(`https://cdn.discordapp.com/emojis/${key}.gif?v=1`, (error, response, body) => {
             if(error) throw error
             let embed = new Discord.RichEmbed()
-            .setColor(bot.config[message.guild.id].embedColor)
+            .setColor(config.embed.embedColor)
             response.body === "" ? imageURL = `https://cdn.discordapp.com/emojis/${key}.png?v=1` : imageURL = `https://cdn.discordapp.com/emojis/${key}.gif?v=1`
             embedMaker.image(message, imageURL)
         })
