@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const config = require("../../data/config.json)
+const config = require("../../data/config.json")
 const embedMaker = require("../../modules/embed.js")
 const request = require('request')
 module.exports.run = async (bot, message, args) => {
